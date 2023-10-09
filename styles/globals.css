@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("/public/fonts/Satoshi-Light.otf") format("otf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  font-family: "Satoshi";
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+/* Estilos para el efecto de completado en underline */
+.underline-animation {
+  text-decoration: none; /* Quita el subrayado predeterminado */
+  position: relative; /* Permite posicionar el elemento hijo de forma relativa */
+  color: #333; /* Color de texto normal */
+}
+
+.underline-animation::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px; /* Ajusta la posición del subrayado */
+  width: 0; /* Inicialmente, el subrayado tiene una longitud de 0 */
+  height: 3px;
+  background-color: #000; /* Color del subrayado cuando está activo */
+  transition: width 0.3s ease-in-out; /* Agrega una transición suave a la longitud del subrayado */
+}
+
+.underline-animation:hover::after {
+  width: 100%; /* Cuando se pasa el ratón por encima, el subrayado se extiende al 100% de la anchura */
+}
